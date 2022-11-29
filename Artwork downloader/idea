@@ -1,0 +1,12 @@
+
+today i discovered that you can make shell scripts
+from text files that have the commands in them
+and this sub-project is for downloading the artworks
+of Darknet Diaries with their corresponding names
+
+what it will do is write the following commands in to a .sh file
+    wget [the link]
+    rm [the current filename, extracted from the link] [new name, from the RSS feed]
+
+the python file will be writing loads of lines into a textfile in the above
+format.

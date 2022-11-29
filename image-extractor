@@ -1,0 +1,36 @@
+import re
+
+location = '/home/johnh/Projects/Python Projects/Custom Tools/Production Line/Podcats/Darknet Diaries RSS feed'  # input('RSS feed: ')
+destination = '/home/johnh/Pictures/Darknet Diaries Episode Artworks'  # input('Input destination: ')
+la_list = []
+pattern = '<itunes:image href="'
+
+
+def grab_em(location, pattern):
+    with open(location, 'r') as file:
+        with open('links.txt', 'w') as links:
+            n = 0
+            for line in file:  # a loop that goes through the lines one at a time
+                if bool(re.match(pattern, line)):  # mind the bool() function, it returns a boolean
+                    links.write(f'{line}')  # writing to file
+                    n += 1
+                else:
+                    continue
+            return links
+
+
+def clean_em(destination):
+    with open('links.txt', 'r+') as file:
+        with open(f'{destination}/clean links.txt', 'w') as clean:
+            for line in file:
+                line = line.replace('<itunes:image href="', '')
+                line = line.replace('"/>', '')
+                clean.write(line)
+                # print(line)
+
+        # return file
+
+
+
+grab_em(location, pattern)
+clean_em(destination)
